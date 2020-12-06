@@ -1,0 +1,33 @@
+{
+    "apiConfig": {
+        "base_url": "",
+    },
+    "themeConfig": {
+        "primaryColor": "#bf5e30",
+        "secondaryColor": "#6c757d",
+        "foregroundColor": "#ffffff",
+        "genericColor": "#000000",
+        "fontFaceName": "Roboto-Regular",
+        "fontFileName": "Roboto-Regular.ttf",
+        "fontFamilyWithFallback": "'Roboto-Regular', sans-serif",
+        "webPageTitle": "Valorant Partner Program"
+    },
+    "languages": [
+        {
+            "__comment__": "English Language",
+            "lng": "en",
+            "name": "English"
+        },
+        {
+            "__comment__": "Chinese Language",
+            "lng": "zh",
+            "name": "Chinese (中文)"
+        },
+        {
+            "__comment__": "Japanese Language",
+            "lng": "ja",
+            "name": "Japanese (日本語)"
+        }
+    ],
+    "buildVersion": "dev-build-v1"
+}

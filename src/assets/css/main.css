@@ -1,0 +1,88 @@
+#body_id {
+  background: #ebe8e0;
+  font-family: "DINNextLTPro-Regular", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.container,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl {
+  max-width: 1470px;
+}
+@font-face {
+  font-family: "Tungsten-Bold";
+  src: url("../fonts/561f38b1f4570de0fb8a39d691ab058c.woff2") format("woff2"), url("../fonts/561f38b1f4570de0fb8a39d691ab058c.woff") format("woff"), url("../fonts/561f38b1f4570de0fb8a39d691ab058c.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'Tungsten-Semibold';
+  src: url('../fonts/Tungsten-Semibold.woff2') format('woff2'), url('../fonts/Tungsten-Semibold.woff') format('woff'), url('../fonts/Tungsten-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DINNextLTPro-Bold";
+  src: url("../fonts/3a88649e176a40a6d80b395ca0ae430d.woff2") format("woff2"), url("../fonts/3a88649e176a40a6d80b395ca0ae430d.woff") format("woff"), url("../fonts/3a88649e176a40a6d80b395ca0ae430d.ttf") format("truetype");
+}
+@font-face {
+  font-family: "DINNextLTPro-Regular";
+  src: url("../fonts/93a467f70a3e7b27a9b52a686f351dbe.woff2") format("woff2"), url("../fonts/93a467f70a3e7b27a9b52a686f351dbe.woff") format("woff"), url("../fonts/93a467f70a3e7b27a9b52a686f351dbe.ttf") format("truetype");
+}
+
+.main {
+  display: flex;
+  justify-content: space-around;
+  
+}
+
+.rightsideBar{
+  width : 60% !important;
+   height: 75vh;
+  background: var(--white);
+  margin-top: 30px;
+  padding: 30px;
+}
+
+.leftsideBar{
+  margin-right:1% !important;
+  width : 35% !important;
+  height: 75vh;
+  background: var(--white);
+  margin-top: 30px;
+  padding: 30px;
+}
+
+.title {
+  width: 100% !important;
+  margin-bottom: 20px;
+}
+
+.desc {
+  margin-top: 20px;
+}
+
+
+.main label {
+  font-weight: 800;
+}
+
+.button-wrapper{
+  width: 100%;
+  text-align: right;
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 400px) {
+  .main {
+    flex-direction: column !important;
+  }
+
+  .leftsideBar{
+    width: 100% !important;
+  }
+
+  .rightsideBar {
+    width: 100% !important;
+  }
+}
