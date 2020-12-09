@@ -12,10 +12,20 @@ function createNote (params) {
   const headers = { 'Content-Type': 'application/json'};
   return Method.post(API_INTERFACE.BASE_URL, params,headers);
 }
+function updateNote (params) {
+  console.log("params id data" ,params)
+  const headers = { 'Content-Type': 'application/json'};
+  return Method.put(API_INTERFACE.BASE_URL+"/"+params.id,params, {headers : headers});
+}
 
 function getAll (params) {
   const headers = { 'Content-Type': 'application/json'};
   return Method.get(API_INTERFACE.BASE_URL, headers);
+}
+
+function getNote (params) {
+  const headers = { 'Content-Type': 'application/json'};
+  return Method.get(API_INTERFACE.BASE_URL+"/"+params, headers);
 }
 
 function deleteNote (id) {
@@ -26,5 +36,7 @@ function deleteNote (id) {
 export  {
   createNote,
   getAll,
-  deleteNote
+  deleteNote,
+  updateNote,
+  getNote
 };

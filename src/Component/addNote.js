@@ -1,23 +1,43 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect } from 'react'
 import 'semantic-ui-css/semantic.min.css'
 import { Form, TextArea ,Message ,Input ,Button} from 'semantic-ui-react';
-import {createNote} from "../services/service.notes";
-const Addnote = (props) => {
- let [form ,setForm] = useState({title : "" ,body : ""});
- let [msg ,setMsg] = useState({msg : "" ,  error  : false});
+import {connect} from  "react-redux";
+import {startSaving, startFetching, startUpdate} from  "../redux/actions";
 
+const Addnote = ({notifyOnAddNote ,createNote ,updateNote ,stateData ,notesList}) => {
+ let [form ,setForm] = useState({title : "" ,body : "" ,id : ""});
+ let [msg ,setMsg] = useState({msg : "" ,  error  : false});
+ let [loading ,setLoading] = useState(false);
+ let [isEdit ,setEdit] = useState(false);
+
+ useEffect(()=>{
+   if(stateData.status === "SAVE_SUCCESS"){
+     setLoading(false);
+     notesList();
+   }
+   if(stateData.status === "FETCH_DETAIL_SUCCESS"){
+    setLoading(false);
+    setEdit(true);
+    console.log("redux state" ,stateData)
+    setForm(stateData.detail);
+  }
+ },[stateData])
   const submitHandler = (e)=>{
     e.preventDefault();
     if(form.title !=="" && form.body !==""){
-        createNote(form).then(res=>{
-         setMsg({error : false ,msg : "Added new note"});
-         setForm({title : "" ,body : ""})
-         props.notifyOnAddNote(res.data.id)
-        }).catch(err=>{
-            setMsg({error : true ,msg : err.message});
-        })
+      setLoading(true);
+      notifyOnAddNote();
+      console.log("form" ,form)
+      if(isEdit){
+        updateNote(form);
+      } else {
+        createNote(form);
+      }
+      
+      setForm({title : "" ,body : ""});
     } else {
-      setMsg({error : true , msg : " Please fill all the fields."})
+      setMsg({error : true , msg : " Please fill all the fields."});
+      setLoading(false);
     }
   }
 
@@ -28,6 +48,12 @@ const Addnote = (props) => {
    {
       msg.error && <Message warning>
       <p style={{color :"Red"}}>{msg.msg}</p>
+    </Message>
+    
+    }
+    {
+     loading &&  <Message info>
+       Saving...
     </Message>
     }
  	 <Form>
@@ -44,4 +70,14 @@ const Addnote = (props) => {
   </div>)
 }
 
-export default Addnote
+const mapDispatchToProps = (dispatch)=>{
+  return { 
+    createNote : (payload)=> dispatch(startSaving(payload)),
+    notesList : ()=> dispatch(startFetching()),
+    updateNote : (data)=> dispatch(startUpdate(data)),
+  }
+}
+const mapStateToProps = (state)=>{
+  return { stateData : state}
+}
+export default connect(mapStateToProps ,mapDispatchToProps)(Addnote);

@@ -39,7 +39,7 @@ function get (url, headers) {
  * @param {object} body
  * @return {promise}
  */
-function put (url, headers, body) {
+function put (url, body,headers) {
   return axios.put(
     url,
     body,
